@@ -1,0 +1,8 @@
+Flask
+line-bot-sdk
+python-dotenv
+requests
+flask-cors
+pymongo
+qrcode
+Pillow
