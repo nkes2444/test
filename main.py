@@ -804,75 +804,7 @@ def load_health_info(config_name: str):
 
     fh.close()
 
-## 本地存放 QR Code 圖片的目錄
-QR_CODE_DIR = "static/qrcodes/"
 
-# 確保目錄存在
-if not os.path.exists(QR_CODE_DIR):
-    os.makedirs(QR_CODE_DIR)
-
-#生成QRCode以及回傳內容來集點
-@handler.add(MessageEvent, message=TextMessageContent)
-def handle_qrcode_request(event):
-    global generated_number
-
-    user_id = event.source.user_id
-    message = event.message.text
-
-    # 如果使用者傳送 "create_qrcode"，生成隨機數字並回傳 QR Code
-    if message == "create_qrcode":
-        # 隨機生成 6 位數字
-        generated_number = random.randint(100000, 999999)
-
-        # 生成 QR Code
-        qr = qrcode.QRCode()
-        qr.add_data(str(generated_number))
-        qr.make(fit=True)
-        img = qr.make_image(fill_color="black", back_color="white")
-
-        # 將圖片儲存到本地檔案
-        qr_code_path = os.path.join(QR_CODE_DIR, f"{generated_number}.png")
-        img.save(qr_code_path)
-
-        # 生成公開的圖片 URL
-        image_url = f"{BASE_URL}/{QR_CODE_DIR}{generated_number}.png"
-
-        # 回傳 QR Code 給使用者
-        with ApiClient(configuration) as api_client:
-            line_bot_api = MessagingApi(api_client)
-            line_bot_api.push_message_with_http_info(
-                PushMessageRequest(
-                    to=user_id,
-                    messages=[
-                        ImageMessage(
-                            original_content_url=image_url,
-                            preview_image_url=image_url,
-                        )
-                    ],
-                )
-            )
-        return
-
-    # 如果使用者傳送的是數字，檢查是否與生成的隨機數字相符
-    elif message.isdigit() and generated_number is not None:
-        if int(message) == generated_number:
-            # 數字匹配，觸發第 311 行邏輯
-            event.message.text = "集點"
-            handle_message(event)  # 使用現有的處理邏輯
-        else:
-            # 數字不匹配，回應錯誤訊息
-            with ApiClient(configuration) as api_client:
-                line_bot_api = MessagingApi(api_client)
-                line_bot_api.reply_message_with_http_info(
-                    ReplyMessageRequest(
-                        reply_token=event.reply_token,
-                        messages=[TextMessage(text="無效的 QR Code 數字，請重新掃描並輸入。")],
-                    )
-                )
-        return
-
-    # 處理其他訊息
-    handle_message(event)
 
 def main():
 
