@@ -63,7 +63,7 @@ secret = os.getenv("SECRET")
 configuration = Configuration(access_token=access_token)
 handler = WebhookHandler(secret)
 
-BASE_URL = "https://linebotapi-tgkg.onrender.com"
+BASE_URL = "https://test-1-pwmo.onrender.com"
 
 def build_url(path: str) -> str:
     return f"{BASE_URL}{path}"
