@@ -4,7 +4,7 @@ services:
   env: python
   repo: https://github.com/nkes2444/test.git
   buildCommand: cd main;pip install gunicorn -r requirements.txt
-  startCommand: cd main;gunicorn app:app
+  startCommand: cd main;gunicorn main:app
   plan: free
   autoDeploy: false
   envVars:
