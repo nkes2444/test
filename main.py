@@ -13,7 +13,6 @@ from linebot.v3.messaging import (
     TemplateMessage,
     ButtonsTemplate,
     PostbackAction,
-    ImageMessage,
     PushMessageRequest,
 )
 
@@ -34,9 +33,8 @@ import os
 import json
 import random
 import persistence as db
-from flask_cors import CORS
-import qrcode
 
+from flask_cors import CORS
 
 health_info = None
 
@@ -65,9 +63,7 @@ secret = os.getenv("SECRET")
 configuration = Configuration(access_token=access_token)
 handler = WebhookHandler(secret)
 
-
-BASE_URL = "https://test-5unu.onrender.com"
-
+BASE_URL = "https://linebotapi-tgkg.onrender.com"
 
 def build_url(path: str) -> str:
     return f"{BASE_URL}{path}"
@@ -803,7 +799,6 @@ def load_health_info(config_name: str):
     health_info = json.loads(filedata)
 
     fh.close()
-
 
 
 def main():
