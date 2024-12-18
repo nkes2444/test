@@ -66,7 +66,7 @@ configuration = Configuration(access_token=access_token)
 handler = WebhookHandler(secret)
 
 
-BASE_URL = "https://line-bot-python-flask-s4sv.onrender.com"
+BASE_URL = "https://test-5unu.onrender.com"
 
 
 def build_url(path: str) -> str:

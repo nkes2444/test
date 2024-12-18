@@ -1,0 +1,66 @@
+services:
+- type: web
+  name: test
+  env: python
+  repo: https://github.com/nkes2444/test.git
+  buildCommand: cd examples/flask-echo;pip install gunicorn -r requirements.txt
+  startCommand: cd examples/flask-echo;gunicorn app:app
+  plan: free
+  autoDeploy: false
+  envVars:
+  - key: VOYCeC2qymR2jGrp+Fczy5qVuuAkj0t02RjFDiTpCW6ceVhvnX03D9250DI+fsbiWv4HMUeIcuj6CQScekGPSl0iEwyjWHHxHzWt6WBP+bVf+xEafHS7D6/qpup9Sw1zKFT0il49f2sZizbWL0+W9wdB04t89/1O/w1cDnyilFU=
+    sync: false
+  - key: f5c05d1ccb49182e2ae5f2e1ad8393
+    sync: false
+# - type: web
+#   name: line-bot-python-flask-with-handler
+#   env: python
+#   repo: https://github.com/line/line-bot-sdk-python.git
+#   buildCommand: cd examples/flask-echo;pip install gunicorn -r requirements.txt
+#   startCommand: cd examples/flask-echo;gunicorn app_with_handler:app
+#   plan: free
+#   autoDeploy: false
+#   envVars:
+#   - key: LINE_CHANNEL_ACCESS_TOKEN
+#     sync: false
+#   - key: LINE_CHANNEL_SECRET
+#     sync: false
+# - type: web
+#   name: line-bot-python-flask-kitchensink
+#   env: python
+#   repo: https://github.com/line/line-bot-sdk-python.git
+#   buildCommand: cd examples/flask-kitchensink;pip install gunicorn -r requirements.txt
+#   startCommand: cd examples/flask-kitchensink;gunicorn app:app
+#   plan: free
+#   autoDeploy: false
+#   envVars:
+#   - key: LINE_CHANNEL_ACCESS_TOKEN
+#     sync: false
+#   - key: LINE_CHANNEL_SECRET
+#     sync: false
+# - type: web
+#   name: line-bot-python-simple-server
+#   env: python
+#   repo: https://github.com/line/line-bot-sdk-python.git
+#   buildCommand: cd examples/simple-server-echo;pip install -r requirements.txt
+#   startCommand: cd examples/simple-server-echo;python app.py
+#   plan: free
+#   autoDeploy: false
+#   envVars:
+#   - key: LINE_CHANNEL_ACCESS_TOKEN
+#     sync: false
+#   - key: LINE_CHANNEL_SECRET
+#     sync: false
+# - type: web
+#   name: line-bot-python-aiohttp
+#   env: python
+#   repo: https://github.com/line/line-bot-sdk-python.git
+#   buildCommand: cd examples/aiohttp-echo;pip install -r requirements.txt
+#   startCommand: cd examples/aiohttp-echo;python app.py
+#   plan: free
+#   autoDeploy: false
+#   envVars:
+#   - key: LINE_CHANNEL_ACCESS_TOKEN
+#     sync: false
+#   - key: LINE_CHANNEL_SECRET
+#     sync: false
